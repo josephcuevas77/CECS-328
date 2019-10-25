@@ -3,6 +3,7 @@ package project1;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import project1.Algorithms;
 
 public class projectMenu {
 	
@@ -36,17 +37,23 @@ public class projectMenu {
 		}
 	}
 	
+	//Option 3
 	private static void randArrSingleMSS() {
 		Scanner in = new Scanner(System.in);
 		int length = 0;
 		System.out.println("Please designate a length to a randomly generated array");
 		length = in.nextInt();
 		int[] newA = createRandArr(length);
-		for(int i = 0; i < newA.length;i++) {
-			System.out.println(newA[i]);
-		}
+		//Printing out array
+//		for(int i = 0; i < newA.length;i++) {
+//			System.out.println(newA[i]);
+//		}
+		//Solution 1
+		int mSS1 = Algorithms.Solution1(newA);
+		System.out.println("MSS from Solution 1: " + mSS1);
 	}
 
+	//Option 2
 	private static void randArrMSS() {
 		Scanner in = new Scanner(System.in);
 		int length = 0;
@@ -58,15 +65,18 @@ public class projectMenu {
 		}
 	}
 
+	//Option 1
 	private static void userInputMSS() {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please input a comma-delimited array on ints");
 		String userInput = in.nextLine();
-		userInToIntArray(userInput);
-		
+		int[] arr = userInToIntArray(userInput);
+		//Solution 1
+		int mSS1 = Algorithms.Solution1(arr);
+		System.out.println("MSS from Solution 1: " + mSS1);
 	}
 
-	private static void userInToIntArray(String userInput) {
+	private static int[] userInToIntArray(String userInput) {
 		ArrayList<Integer> arr = new ArrayList<Integer>();
 		String none = "";
 		userInput.replaceAll("\\s+","");
@@ -82,6 +92,11 @@ public class projectMenu {
 		for(int i : arr) {
 			System.out.println(i);
 		}
+		int [] a = new int[arr.size()];
+		for(int i= 0;i < arr.size();i++) {
+			a[i] = arr.get(i);
+		}
+		return a;
 	}
 
 	private static void printMenu() {
